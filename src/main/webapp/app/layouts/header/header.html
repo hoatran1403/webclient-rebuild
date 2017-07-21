@@ -1,0 +1,41 @@
+<style>
+.sdom-header-toolbar {
+    background: rgba(14, 60, 82, 1);
+    background: -moz-linear-gradient(45deg, rgba(14, 60, 82, 1) 0%, rgba(140, 175, 189, 1) 37%, rgba(184, 215, 224, 1) 52%, rgba(132, 177, 194, 1) 69%, rgba(14, 61, 92, 1) 100%);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(14, 60, 82, 1)), color-stop(37%, rgba(140, 175, 189, 1)), color-stop(52%, rgba(184, 215, 224, 1)), color-stop(69%, rgba(132, 177, 194, 1)), color-stop(100%, rgba(14, 61, 92, 1)));
+    background: -webkit-linear-gradient(45deg, rgba(14, 60, 82, 1) 0%, rgba(140, 175, 189, 1) 37%, rgba(184, 215, 224, 1) 52%, rgba(132, 177, 194, 1) 69%, rgba(14, 61, 92, 1) 100%);
+    background: -o-linear-gradient(45deg, rgba(14, 60, 82, 1) 0%, rgba(140, 175, 189, 1) 37%, rgba(184, 215, 224, 1) 52%, rgba(132, 177, 194, 1) 69%, rgba(14, 61, 92, 1) 100%);
+    background: -ms-linear-gradient(45deg, rgba(14, 60, 82, 1) 0%, rgba(140, 175, 189, 1) 37%, rgba(184, 215, 224, 1) 52%, rgba(132, 177, 194, 1) 69%, rgba(14, 61, 92, 1) 100%);
+    background: linear-gradient(45deg, rgba(14, 60, 82, 1) 0%, rgba(140, 175, 189, 1) 37%, rgba(184, 215, 224, 1) 52%, rgba(132, 177, 194, 1) 69%, rgba(14, 61, 92, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#0e3c52', endColorstr='#0e3d5c', GradientType=1);
+
+}
+
+.nav-header {
+    background-color: transparent;
+    background: transparent;
+    border-bottom: 1px solid rgb(132, 132, 132);
+}
+</style>
+<md-toolbar ng-init="vm.getAccount()" class="md-whiteframe-4dp" style="background: rgb(20,76,99)" flex>
+    <div layout="row" flex>
+        <div ng-switch="vm.isAuthenticated()">
+            <div ng-switch-when="true" style="color: white" layout="row" layout-padding>
+                <div layout="row">
+                    {{vm.account.lastName}}
+                </div>
+                <a ng-click="vm.logout()" id="logout">
+                    <span class="glyphicon glyphicon-log-in" style="color:rgb(255,87,34);"></span>
+                    <md-tooltip md-direction="bottom">
+                        sign out
+                      </md-tooltip>
+                    </a>
+
+                  </div>
+                </div>
+        <div layout-align="center center" layout="column" hide-xs show-gt-md flex>
+            <h1 class="md-heading" style="color: rgb(255,36,36); font-weight:bold;" layout-align="center center">SDOM
+            Web Client</h1>
+        </div>
+    </div>
+</md-toolbar>

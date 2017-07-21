@@ -1,0 +1,19 @@
+html {
+  color: $textColor;
+  font-family: tahoma, verdana, arial, boschSansRegular;
+  advancedAntiAliasing: true;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+
+  font-size: $font-size;
+}
+
+
+.large-font{
+  font-size: 1.3em;
+}
+
+/************************************************************************************************************************* DARK */
+html.dark {
+  color: $textColor_dark;
+}

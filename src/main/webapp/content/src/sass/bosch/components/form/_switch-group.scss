@@ -1,0 +1,122 @@
+.rb-switch-group {
+  vertical-align: top;
+  display: inline-flex;
+
+  label {
+    white-space: nowrap;
+    padding: 0px;
+    display: flex;
+  }
+
+  label > span {
+    border-radius: 2px;
+    border: none;
+    transform: skew(-15deg, 0deg);
+    padding: 0px 15px;
+    font-size: 0.8em;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  input {
+    display: none;
+
+    &[disabled] + label {
+      @include make-disabled();
+    }
+  }
+
+  label span span {
+    display: inline-block;
+    transform: skew(15deg, 0deg);
+    padding: 0px;
+  }
+
+  input + label .rb-switch-group-off {
+    @include linearGradient(lighten($rb-light-theme-secondary-medium-dark, 10), $rb-light-theme-secondary-medium-dark);
+    z-index: 2;
+
+    span {
+      color: $rb-light-theme-primary-light;
+    }
+  }
+
+  input + label .rb-switch-group-on {
+    background: $rb-light-theme-primary-light;
+    box-shadow: inset 2px 2px 5px lighten($rb-light-theme-primary-dark,40);
+
+    span {
+      color: $textColor_inactive;
+    }
+  }
+
+  input:checked + label .rb-switch-group-off {
+    background: $rb-light-theme-primary-light;
+    box-shadow: inset 2px 2px 5px lighten($rb-light-theme-primary-dark,40);
+    z-index: 0;
+
+    span {
+      color: $textColor_inactive;
+    }
+  }
+
+  input:checked + label .rb-switch-group-on {
+    @include linearGradient(lighten($rb-light-theme-accent-green, 10), $rb-light-theme-accent-green);
+    box-shadow: none;
+
+    span {
+      color: $rb-light-theme-primary-light;
+    }
+  }
+
+  label * {
+    margin-left: -1px;
+  }
+
+  label > span:first-of-type {
+    margin-left: 5px;
+  }
+}
+
+/************** DARK **************/
+
+.dark {
+  .rb-switch-group {
+    label > span {
+      box-shadow: 0 0 0 1px #112d44;
+    }
+
+    input + label .rb-switch-group-off {
+      @include linearGradient($rb-dark-theme-secondary-medium-light, $rb-dark-theme-secondary-medium);
+    }
+
+    input + label .rb-switch-group-on {
+      background: $rb-dark-theme-primary-medium-dark;
+      box-shadow: none;
+      border: 1px solid $rb-content-border-color_dark;
+      span {
+        color: $textColor_inactive_dark;
+      }
+    }
+
+    input:checked + label .rb-switch-group-off {
+      background: $rb-dark-theme-primary-medium-dark;
+      box-shadow: none;
+      border: 1px solid $rb-content-border-color_dark;
+      span {
+        color: $textColor_inactive_dark;
+      }
+    }
+
+    input:checked + label .rb-switch-group-on {
+      @include linearGradient(lighten($rb-dark-theme-accent-green, 10), $rb-dark-theme-accent-green);
+      span {
+        color: $textColor_dark;
+      }
+    }
+  }
+
+  
+}
+

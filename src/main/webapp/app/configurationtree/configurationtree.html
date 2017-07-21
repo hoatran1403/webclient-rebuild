@@ -1,0 +1,90 @@
+<style type="text/css">
+  md-content {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .sdom-content-body {
+    margin: 16px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(35, 97, 121);
+  }
+
+  md-card {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .material-icons {
+    display: block !important;
+  }
+
+  .md-button.md-icon-button {
+    margin: 0 0.6rem;
+    height: 4.8rem;
+    min-width: 0;
+    line-height: 4.8rem;
+    padding-left: 0;
+    padding-right: 0;
+    width: 4.8rem;
+  }
+</style>
+<div layout="column" class="sdom-content-body" tabIndex="-1" role="main" flex>
+
+  <md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar" layout="row" style="color:rgb(21, 90, 117) !important; font-weight:bold"
+    layout-padding>
+    <md-button class="md-icon-button" ng-click="vm.openSidebar()" hide-gt-sm aria-label="Toggle Menu">
+      <md-icon md-font-library="material-icons" style="color:rgb(21, 90, 117) !important;">menu</md-icon>
+    </md-button>
+    <div layout-padding flex>Configuration Tree</div>
+
+    <md-button class="md-fab md-warn md-mini" ng-click="vm.openSearch($event)">
+      <md-icon md-font-library="material-icons">search</md-icon>
+      <md-tooltip md-direction="bottom">
+        Search
+      </md-tooltip>
+    </md-button>
+    <md-button class="md-fab md-mini md-warn" ng-click="vm.openInfoBlock($event)" ng-disabled="vm.selectedList.length !== 1">
+      <md-icon md-font-library="material-icons">info_outline</md-icon>
+      <md-tooltip md-direction="bottom">
+        Info Block
+      </md-tooltip>
+    </md-button>
+
+    
+      <md-button ng-show="!vm.isDownloading" class="md-fab md-warn md-mini" ng-click="vm.openDownload($event)" ng-disabled="vm.selectedList.length !== 1">
+        <md-icon md-font-library="material-icons"><i class="material-icons">file_download</i></md-icon>
+        <md-tooltip md-direction="bottom">
+          Download
+        </md-tooltip>
+      </md-button>
+      <div ng-show="vm.isDownloading" layout-align="space-around">
+        <md-progress-circular  class="md-accent" md-diameter="30"></md-progress-circular>
+        <md-tooltip md-direction="bottom">
+          Downloading...
+        </md-tooltip>
+      </div>
+
+    <md-button class="md-raised md-warn" ng-click="vm.goImplementationEditor()" ng-disabled="vm.selectedList.length !== 1">Implementation
+      <md-tooltip md-direction="bottom">
+        Implementation Editor
+      </md-tooltip>
+    </md-button>
+
+    <md-button class="md-raised md-warn" ng-click="vm.openCompare()" ng-disabled="vm.selectedList.length !== 2">Compare
+      <md-tooltip md-direction="bottom">
+        Compare Objects
+      </md-tooltip>
+    </md-button>
+
+  </md-toolbar>
+  <md-content layout="column" flex>
+    <md-card layout flex>
+      <tree-table layout flex> </tree-table>
+    </md-card>
+    <div layout="row" layout-align="center center">
+      <div id="license-footer" flex>� Robert Bosch GmbH</div>
+    </div>
+  </md-content>
+  <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+</div>

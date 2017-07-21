@@ -1,0 +1,60 @@
+label {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none; // IE10+
+  user-select: none;
+
+  padding: 5px;
+}
+
+.rb-form-group {
+  padding: 0px 10px 10px 10px;
+}
+
+input,
+select,
+option,
+textarea {
+  &[disabled] {
+    @include make-disabled();
+  }
+}
+
+
+:-ms-input-placeholder {
+  color: $textColor_inactive_dark;
+  opacity: .7;
+}
+
+:-moz-placeholder {
+  color: $textColor_inactive_dark;
+  opacity: .7;
+}
+::-moz-placeholder {
+  color: $textColor_inactive_dark;
+  opacity: .7;
+}
+::-webkit-input-placeholder {
+  color: $textColor_inactive_dark;
+  opacity: .7;
+}
+
+.dark :-ms-input-placeholder {
+  color: $textColor_inactive_dark;
+  opacity: 1;
+}
+
+.dark :-moz-placeholder {
+  color: $textColor_inactive_dark;
+  opacity: 1;
+}
+
+.dark ::-moz-placeholder {
+  color: $textColor_inactive_dark;
+  opacity: 1;
+}
+
+.dark ::-webkit-input-placeholder {
+  color: $textColor_inactive_dark;
+  opacity: 1;
+}

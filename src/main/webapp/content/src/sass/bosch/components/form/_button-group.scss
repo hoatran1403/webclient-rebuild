@@ -1,0 +1,69 @@
+.rb-button-group {
+  vertical-align: top;
+  display: inline-flex;
+  transform: skew(-15deg, 0deg);
+  box-shadow: inset 0px 1px 1px $rb-light-theme-primary-dark;
+  background-color: $rb-light-theme-primary-light;
+  margin-left: 5px;
+  border-radius: 2px;
+
+  label {
+    white-space: nowrap;
+    padding: 0px;
+    background: image-url("bosch/bosch_tabSeperator.png") no-repeat left;
+  }
+
+  label:first-of-type {
+    background-image: none;
+  }
+
+  label > span {
+    border: none;
+    transform: skew(15deg, 0deg);
+    padding: 5px 20px;
+    margin-left: -1px;
+    color: $textColor_inactive;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  input {
+    display: none;
+
+    &[disabled] + label {
+      @include make-disabled();
+    }
+  }
+}
+
+.rb-button-group input:checked + label,
+.dark .rb-button-group input:checked + label {
+  @include linearGradient($rb-dark-theme-secondary-medium-light, $rb-dark-theme-secondary-medium);
+  box-shadow: none;
+  z-index: 2;
+  span {
+    color: $rb-light-theme-primary-light;
+  }
+}
+
+/************** DARK **************/
+
+.dark {
+  .rb-button-group {
+    background-color: $rb-dark-theme-primary-medium-dark;
+    box-shadow: inset 0px 1px 1px $rb-dark-theme-primary-dark;
+
+    label {
+      background: image-url("bosch/bosch_tabSeperator_dark.png") no-repeat left;
+
+      span {
+        color: $textColor_inactive_dark;
+      }
+    }
+
+    label:first-of-type {
+      background-image: none;
+    }
+  }
+}
+

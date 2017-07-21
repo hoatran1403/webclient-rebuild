@@ -1,0 +1,110 @@
+<style>
+.label {
+    color: grey;
+}
+
+.md-table-pagination {
+    min-height: 50px;
+}
+
+table.md-table {
+    overflow: inherit !important;
+}
+
+md-content {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.sdom-content-body {
+    margin: 16px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(35, 97, 121);
+}
+
+md-card {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+table.md-table td.md-cell {
+    color: rgba(5, 102, 103, 1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 100px;
+    max-width: 200px;
+}
+
+md-option {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+</style>
+
+<div ng-init="vm.getSystemConstantNormalization(vm.oslcPageNo)" layout="column" class="sdom-content-body" tabIndex="1" role="main" background="../content/images/bosch/bg-1280x800_dark.png" flex>
+
+    <md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar" layout="row" layout-padding>
+      <md-button class="md-icon-button" ng-click="vm.openSidebar()" hide-gt-sm aria-label="Toggle Menu">
+        <md-icon md-font-library="material-icons" style="color:rgb(21, 90, 117) !important;">menu</md-icon>
+      </md-button>
+        <div style="color:rgb(21, 90, 117) !important; font-weight:bold" layout-padding flex>Normalization Editor</div>
+    </md-toolbar>
+    <md-content md-scroll-y layout="column" background="../content/src/images/bg-1280x800_dark.png" flex>
+        <md-card layout="column" flex>
+            <md-table-container layout="column" flex>
+                
+                <!-- <table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}" ng-model="selected" md-progress="promise" col-resizeable> -->
+                <table md-table multiple="{{vm.options.multiSelect}}" ng-model="vm.selected" md-progress="promise">
+                    <thead md-head md-order="vm.query.order" md-on-reorder="vm.logOrder" fix-head>
+                        <tr md-row>
+                            <th md-column><span>Name</span></th>
+                            <th md-column><span>Rev</span></th>
+                            <th md-column md-desc><span>Type</span></th>
+                            <th md-column><span>Validity</span></th>
+                            <th md-column><span>Comment German</span></th>
+                            <th md-column><span>Comment English</span></th>
+                            <th md-column><span>Description</span></th>
+                            <th md-column><span>Clearing req.id</span></th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <!-- <tr md-row md-select="item" md-on-select="logItem" md-auto-select="options.autoSelect" ng-repeat="item in SystemConstants.data | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">  -->
+                        <tr md-row md-select="item" md-on-select="vm.logItem" md-auto-select="vm.options.autoSelect" ng-repeat="item in vm.SystemConstants.data | limitTo: vm.query.limit : (vm.query.page -1) * vm.query.limit">
+                            <td md-cell>{{item.name}}
+                                <md-tooltip md-direction="bottom" md-delay="500">
+                                    {{item.name}}
+                                </md-tooltip>
+                            </td>
+                            <td md-cell>{{item.revision}}</td>
+                            <td md-cell>{{item.type}}</td>
+                            <td md-cell>{{item.validity}}</td>
+                            <td md-cell>{{item.descriptionDE}}
+                                <md-tooltip md-direction="bottom" md-delay="500">
+                                    {{item.descriptionDE}}
+                                </md-tooltip>
+                            </td>
+                            <td md-cell>{{item.descriptionEN}}
+                                <md-tooltip md-direction="bottom" md-delay="500">
+                                    {{item.descriptionEN}}
+                                </md-tooltip>
+                            </td>
+                            <td md-cell>{{item.description}}
+                                <md-tooltip md-direction="bottom" md-delay="500">
+                                    {{item.description}}
+                                </md-tooltip>
+                            </td>
+                            <td md-cell>{{item.clearingRequestId}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-table-pagination md-limit="vm.query.limit" md-limit-options="vm.limitOptions" md-page="vm.query.page" md-total="{{vm.SystemConstants.count}}" md-page-select="vm.options.pageSelect" md-boundary-links="vm.options.boundaryLinks" md-on-paginate="vm.logPagination"></md-table-pagination>
+        </md-card>
+        <div layout="row" layout-align="center center">
+            <div id="license-footer" flex>� Robert Bosch GmbH</div>
+        </div>
+    </md-content>
+</div>

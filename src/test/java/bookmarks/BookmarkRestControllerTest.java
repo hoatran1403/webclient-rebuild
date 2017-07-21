@@ -31,9 +31,9 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 /**
  * Created by ort1hc on 7/19/2017.
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class)
-@WebAppConfiguration
+//@RunWith(SpringRunner.class)
+//@SpringBootTest(classes = Application.class)
+//@WebAppConfiguration
 public class BookmarkRestControllerTest {
 
     private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),

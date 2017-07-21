@@ -1,0 +1,458 @@
+<!-- packageList.treeTemplate.html -->
+<style>
+  table {
+    width: 100%;
+  }
+
+  .highlightedPhrase {
+    background-color: #FF0;
+  }
+
+  .highlightedRow {
+    color: rgb(63, 81, 181);
+    background-color: #DCDCDC;
+  }
+
+  .disabledRow {
+    color: rgb(101, 97, 97) !important;
+  }
+  /*  */
+
+  .table-nested .cell-input {
+    width: 18px;
+  }
+
+  .table-nested .children {
+    cursor: pointer;
+    display: none;
+    margin-left: 10px;
+  }
+
+  .table-nested .opened>.children {
+    display: table-row;
+  }
+
+  .table-nested .opened>tr>.cell-name>div>div>.indent {
+    moz-transform: rotate(90deg);
+    ms-transform: rotate(90deg);
+    o-transform: rotate(90deg);
+    transform: rotate(90deg);
+    webkit-transform: rotate(90deg);
+  }
+
+  .table-nested .parent>.cell-name {
+    font-weight: 600;
+    cursor: pointer
+  }
+  /* The ::before pseudo-element is used to draw the horizontal lines. */
+
+  .table-nested .parent>.cell-name>div>div>.indent {
+    /*content: ">";*/
+    display: inline-block;
+    moz-transition: 0 .2s;
+    ms-transition: 0 .2s;
+    o-transition: 0 .2s;
+    transition: transform .2s;
+    webkit-transition: 0 .2s;
+    width: 10px;
+  }
+
+
+  .table-nested th+th,
+  .table-nested th+td,
+  .table-nested td+th,
+  .table-nested td+td {
+    padding-left: 5px;
+  }
+
+  .table-nested th,
+  .table-nested td {
+    padding: 0 0 0 15px !important;
+  }
+
+  .description-table-nested {
+    width: 100%;
+  }
+
+  .description-table-nested .children {
+    cursor: pointer;
+    display: none;
+  }
+
+  .description-table-nested .opened>.children {
+    display: table-row;
+  }
+
+  .description-table-nested .parent>.cell-name {
+    font-weight: 600;
+    cursor: pointer
+  }
+
+
+  .description-table-nested th {
+    padding: 0 0 !important;
+  }
+
+  .description-table-nested td {
+    padding: 0 0 !important;
+  }
+
+
+  table.md-table th.md-column {
+    border-bottom: 1px rgba(0, 0, 0, 0.12) solid;
+  }
+
+  table.md-table td.md-cell {
+    border: none;
+    color: rgba(5, 102, 103, 1);
+  }
+
+
+
+  .description-table-nested td {
+    white-space: nowrap;
+  }
+
+
+  table.md-table {
+    overflow: inherit !important;
+  }
+
+
+
+
+  table.md-table td.md-cell {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0px;
+    max-width: 0px;
+  }
+
+  .remove-th-style {
+    height: 0px !important;
+  }
+
+  .fixed-header {
+    width: inherit;
+    position: fixed;
+    background: white;
+  }
+
+ 
+</style>
+
+<!------------------------>
+<!-- FIRST OBJECT TABLE -->
+<!------------------------>
+
+<script id="first_object_tree.html" type="text/ng-template">
+  <tr md-row ng-class="{ parent: item.children}" ng-init="parentScope = $parent.$parent;">
+    <td md-cell class="cell-name" ng-class="{'disabledRow': item.usageState == 'DISABLED'}" id="{{ item.fullname }}" style="width: 100%; height:  55px !important; border-left: 5px rgba(5,102,103,1) solid;">
+      <div ng-if="item.fullname" layout="row">
+
+        <div ng-switch="item.iconUrl" layout="row">
+          <img ng-switch-default ng-src="{{item.iconUrl}}" style="width:15px; height: 15px;" alt="{{item.iconUrl}}">
+          <div ng-switch-when="null" class="indent"> > </div>
+          <div ng-switch-when="null" ng-switch="item.opened">
+            <i ng-switch-when="false" class="material-icons" ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style=" color: rgba(5, 102, 103, 0.87);">folder</i>
+            <i ng-switch-when="true" class="material-icons" ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style=" color: rgba(5, 102, 103, 0.87);">folder_open</i>
+          </div>
+        </div>
+
+        <div style="margin-left: 6px;" ng-bind="item.fullname + (item.children.length > 0 ? ' [ ' + item.children.length + ' ]' : '')"
+          flex>
+          <md-tooltip md-direction="bottom" md-delay="500">
+            {{item.fullname + (item.children.length > 0 ? ' [ ' + item.children.length + ' ]' : '')}}
+          </md-tooltip>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr md-row class="children" ng-if="item.children.length > 0">
+    <td>
+      <table md-table class="table-nested">
+        <tbody md-body ng-class="{ opened: item.opened}" ng-include="'first_object_tree.html'" ng-repeat="item in item.children track by $index"></tbody>
+      </table>
+    </td>
+  </tr>
+</script>
+<script id="first-object_description.html" type="text/ng-template">
+  <tr md-row ng-class="{ parent: item.children, 'disabledRow': item.usageState == 'DISABLED' }" ng-init="parentScope = $parent.$parent;">
+    <div ng-if="item !== null">
+      <td md-cell ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important;"
+        ng-bind="item.clazz">
+      </td>
+      <td md-cell ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important;"
+        ng-bind="item.elementType">
+
+      </td>
+      <td md-cell ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important;"
+        ng-bind="item.state">
+         <md-tooltip md-direction="bottom">
+            {{item.state}}
+          </md-tooltip>
+      </td>
+      <td md-cell ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important;"
+        ng-bind="item.cond">
+        <md-tooltip ng-if="item.cond != ''" md-direction="bottom">{{item.cond}}</md-tooltip>
+      </td>
+      <td md-cell ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important;"
+        ng-bind="item.usageConditionSys">
+        <md-tooltip ng-if="item.usageConditionSys != ''" md-direction="bottom">{{item.usageConditionSys}}</md-tooltip>
+      </td>
+      <!--<td md-cell hide-xs hide-sm ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important;" ng-bind="item.creationDate">
+      <md-tooltip ng-if="item.creationDate != ''" md-direction="bottom">{{item.creationDate}}</md-tooltip>
+    </td>
+    <td md-cell hide-xs hide-sm hide-md ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important;" ng-bind="item.creationUser">
+    </td>-->
+      <td md-cell style="padding-left: 8px !important; height: 55px !important;">
+        <img ng-src="{{item.objectCompareIconUrl}}" />
+      </td>
+    </div>
+  </tr>
+  <tr md-row class="children" ng-if="item.children.length > 0">
+    <td colspan="6">
+      <table md-table class="description-table-nested">
+        <thead md-head md-order="item.fullname">
+          <tr md-row class="remove-th-style">
+            <th>
+              <div style="width: 40px !important;height:0px; padding-left: 8px;"></div>
+            </th>
+            <th>
+              <div style="width: 37px !important;height:0px; padding-left: 8px;"></div>
+            </th>
+            <th>
+              <div style="width: 45px !important;height:0px; padding-left: 8px;"></div>
+            </th>
+            <th>
+              <div style="width: 46px !important;height:0px; padding-left: 8px;"></div>
+            </th>
+            <th>
+              <div style="width: 130px !important;height:0px; padding-left: 8px;"></div>
+            </th>
+            <th>
+              <div style="width: 26px !important;height:0px; padding-left: 8px;"></div>
+            </th>
+          </tr>
+        </thead md-head>
+        <tbody md-body ng-class="{ opened: item.opened }" ng-include="'first-object_description.html'" ng-repeat="item in item.children track by $index">
+        </tbody>
+      </table>
+    </td>
+  </tr>
+</script>
+
+<!--<div layout="row" ng-cloak style="margin-left:10px;" ng-init="vm.init()" flex>-->
+  <md-table-container layout="row" ng-cloak style="margin-left:10px;" ng-init="vm.init()" flex>
+    <div flex="20" style="position: relative !important; min-width:180px;" layout="column">
+      <table md-table class="table-nested">
+        <thead md-head>
+          <tr md-row>
+            <th md-column style="text-align: center; padding : 0px !important">
+              <div>All objects</div>
+            </th>
+          </tr>
+        </thead>
+
+        <tbody md-body ng-class="{opened: item.opened}" style="line-height: 30px;" ng-include="'first_object_tree.html'" ng-repeat="item in vm.firstList track by $index">
+        </tbody>
+      </table>
+
+    </div>
+    <div style="margin-right: 10px !important" layout="column" flex>
+      <table md-table class="description-table-nested">
+        <thead md-head>
+          <tr md-row>
+            <th md-column style="padding-left: 8px !important; text-align: left;">
+              <div style="width: 37px !important; height: 12px;">
+                Class
+              </div>
+            </th>
+            <th md-column style="padding-left: 8px !important; text-align: left;">
+              <div style="width: 33px !important; height: 12px;">
+                Type
+              </div>
+            </th>
+            <th md-column style="padding-left: 8px !important; text-align: left;">
+              <div style="width: 40px !important; height: 12px;">
+                State
+              </div>
+            </th>
+            <th md-column style="padding-left: 8px !important; text-align: left;">
+              <div style="width: 41px !important; height: 12px;">
+                COND
+              </div>
+            </th>
+            <th md-column style="padding-left: 8px !important; text-align: left;">
+              <div style="width: 130px !important; height: 12px;">
+                USAGECONDITIONSYS
+              </div>
+            </th>
+            <th md-column style="padding-left: 8px !important; text-align: left;">
+              <div style="width: 20px !important; height: 12px;"></div>
+            </th>
+          </tr>
+        </thead>
+        <tbody md-body ng-class="{opened: item.opened}" ng-include="'first-object_description.html'" ng-repeat="item in vm.firstList track by $index">
+
+        </tbody>
+      </table>
+
+    </div>
+  </md-table-container>
+<!--</div>-->
+
+<!------------------------>
+<!-- SECOND OBJECT TABLE -->
+<!------------------------>
+
+<script id="second_object_tree.html" type="text/ng-template">
+  <tr md-row ng-class="{ parent: item.children}" ng-init="parentScope = $parent.$parent;">
+    <td md-cell class="cell-name" ng-class="{'disabledRow': item.usageState == 'DISABLED'}" id="{{ item.fullname }}" style="width: 100%; height:  55px !important; border-left: 5px rgba(5,102,103,1) solid;">
+      <div ng-if="item !== null" layout="row">
+
+        <div ng-switch="item.iconUrl" layout="row">
+          <img ng-switch-default ng-src="{{item.iconUrl}}" style="width:15px; height: 15px;" alt="{{item.iconUrl}}">
+          <div ng-switch-when="null" class="indent"> > </div>
+          <div ng-switch-when="null" ng-switch="item.opened">
+            <i ng-switch-when="false" class="material-icons" ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style=" color: rgba(5, 102, 103, 0.87);">folder</i>
+            <i ng-switch-when="true" class="material-icons" ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style=" color: rgba(5, 102, 103, 0.87);">folder_open</i>
+          </div>
+        </div>
+
+        <div style="margin-left: 6px;" ng-bind="item.fullname + (item.children.length > 0 ? ' [ ' + item.children.length + ' ]' : '')"
+          flex>
+          <md-tooltip md-direction="bottom" md-delay="500">
+            {{item.fullname + (item.children.length > 0 ? ' [ ' + item.children.length + ' ]' : '')}}
+          </md-tooltip>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr md-row class="children" ng-if="item.children.length > 0">
+    <td>
+      <table md-table class="table-nested">
+        <tbody md-body ng-class="{ opened: item.opened}" ng-include="'second_object_tree.html'" ng-repeat="item in item.children track by $index"></tbody>
+      </table>
+    </td>
+  </tr>
+</script>
+<script id="second-object_description.html" type="text/ng-template">
+
+  <tr md-row ng-class="{ parent: item.children,'disabledRow': item.usageState == 'DISABLED' }" ng-init="parentScope = $parent.$parent;">
+    <div ng-if="item !== null">
+      <td md-cell ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important;"
+        ng-bind="item.clazz">
+      </td>
+      <td md-cell ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important;"
+        ng-bind="item.elementType">
+
+      </td>
+      <td md-cell ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important;"
+        ng-bind="item.state">
+        <md-tooltip md-direction="bottom">
+            {{item.state}}
+          </md-tooltip>
+      </td>
+      <td md-cell ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important;"
+        ng-bind="item.cond">
+        <md-tooltip ng-if="item.cond != ''" md-direction="bottom">{{item.cond}}</md-tooltip>
+      </td>
+      <td md-cell ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important;" ng-bind="item.usageConditionSys">
+          <md-tooltip ng-if="item.usageConditionSys != ''" md-direction="bottom">{{item.usageConditionSys}}</md-tooltip>
+        </td>
+        <!--<td md-cell hide-xs hide-sm ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important;" ng-bind="item.creationDate">
+          <md-tooltip ng-if="item.creationDate != ''" md-direction="bottom">{{item.creationDate}}</md-tooltip>
+        </td>
+      <td md-cell hide-xs hide-sm hide-md ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important;"
+        ng-bind="item.creationUser">
+      </td>-->
+    </div>
+
+  </tr>
+  <tr md-row class="children" ng-if="item.children.length > 0">
+    <td colspan="5">
+      <table md-table class="description-table-nested">
+        <thead md-head md-order="item.fullname">
+          <tr md-row class="remove-th-style">
+            <th>
+              <div style="width: 40px !important;height:0px; padding-left: 8px;"></div>
+            </th>
+            <th>
+              <div style="width: 37px !important;height:0px; padding-left: 8px;"></div>
+            </th>
+            <th>
+              <div style="width: 45px !important;height:0px; padding-left: 8px;"></div>
+            </th>
+            <th>
+              <div style="width: 46px !important;height:0px; padding-left: 8px;"></div>
+            </th>
+            <th>
+              <div style="width: 130px !important;height:0px; padding-left: 8px;"></div>
+            </th>
+          </tr>
+        </thead md-head>
+        <tbody md-body ng-class="{ opened: item.opened }" ng-include="'second-object_description.html'" ng-repeat="item in item.children track by $index">
+        </tbody>
+      </table>
+    </td>
+
+  </tr>
+</script>
+
+<div layout="row" ng-cloak style="margin-left:10px;" flex>
+  <md-table-container layout="row" flex>
+    <div flex="20" style="position: relative !important; min-width:180px;" layout="column">
+      <table md-table class="table-nested" >
+        <thead md-head>
+          <tr md-row>
+            <th md-column style="overflow: hidden; text-align: center; padding : 0px !important">
+              All objects
+            </th>
+          </tr>
+        </thead>
+        <tbody md-body ng-class="{opened: item.opened}" style="line-height: 30px;" ng-include="'second_object_tree.html'" ng-repeat="item in vm.secondList track by $index">
+        </tbody>
+      </table>
+
+    </div>
+
+    <div style="margin-right: 10px !important" layout="column" flex>
+      <table md-table class="description-table-nested">
+        <thead md-head>
+          <tr md-row>
+            <th md-column style="padding-left: 8px !important; text-align: left;">
+              <div style="width: 37px !important; height: 12px;">
+                Class
+              </div>
+            </th>
+            <th md-column style="padding-left: 8px !important; text-align: left;">
+              <div style="width: 33px !important; height: 12px;">
+               Type
+              </div>
+            </th>
+            <th md-column style="padding-left: 8px !important; text-align: left;">
+              <div style="width: 40px !important; height: 12px;">
+               State
+              </div>
+            </th>
+            <th md-column style="padding-left: 8px !important; text-align: left;">
+              <div style="width: 41px !important; height: 12px;">
+               COND
+              </div>
+            </th>
+            <th md-column style="padding-left: 8px !important; text-align: left;">
+              <div style="width: 130px !important; height: 12px;">
+                USAGECONDITIONSYS
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody md-body ng-class="{opened: item.opened}" ng-include="'second-object_description.html'" ng-repeat="item in vm.secondList track by $index">
+        </tbody>
+      </table>
+
+    </div>
+  </md-table-container>
+</div>

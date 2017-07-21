@@ -1,0 +1,31 @@
+.rb-content {
+  @include make-rb-content();
+}
+
+//makes the element consume the available vertical space
+.rb-expand-height {
+  @include make-expand-height();
+}
+.rb-expand-width {
+  width: 100%;
+}
+
+.rb-header + .rb-content {
+  top: $content-top-offset;
+  position: relative;
+  @include make-rb-content($content-top-offset);
+}
+
+.rb-v-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 100%;
+}
+
+.rb-content-title + .rb-v-scroll {
+  @include make-expand-height($content-title-height);
+}
+
+.rb-tabs + .rb-expand-height{
+  @include make-expand-height($tab-height);
+}

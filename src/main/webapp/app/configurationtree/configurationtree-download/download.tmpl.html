@@ -1,0 +1,94 @@
+<style media="screen">
+  fieldset {
+    border: solid 1px #c0c0c0;
+    height: 100%;
+    display: block;
+    -webkit-margin-start: 2px;
+    -webkit-margin-end: 2px;
+    -webkit-padding-before: 0.35em;
+    -webkit-padding-start: 0.75em;
+    -webkit-padding-end: 0.75em;
+    -webkit-padding-after: 0.625em;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    min-width: -webkit-min-content;
+    padding: 10px;
+  }
+
+  .legend {
+    width: initial;
+    border-bottom: initial;
+    margin-bottom: 0px;
+  }
+</style>
+
+<md-dialog aria-label="Mango (Fruit)">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>File download</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="vm.close()">
+          <md-icon md-font-library="material-icons"><i class="material-icons">close</i></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="min-width:500px;min-height:400px;max-width:800px;max-height:810px; ">
+
+      <md-content class="md-padding">
+
+        <fieldset>
+          <legend class="legend">Objects</legend>
+          <md-content>
+            <div layout="row">
+              <md-checkbox class="md-warn" ng-checked="true" aria-label="Replace keywords">
+                {{vm.selectedItem.fullname}}
+              </md-checkbox>
+
+            </div>
+          </md-content>
+        </fieldset>
+        <br>
+        <fieldset>
+          <legend class="legend">Download Options</legend>
+          <md-content>
+            <div layout="column">
+              <md-checkbox class="md-warn" ng-model="vm.keywords" aria-label="Replace keywords">
+                Replace keywords
+              </md-checkbox>
+              <md-input-container>
+                <label>Directory rules</label>
+                <md-select ng-model="vm.dirrule">
+                  <md-option ng-repeat="item in vm.directoryRulesResList track by $index" ng-value="item">{{item.dirRuleName}};{{item.dirRuleVersion}} {{item.comment}}</md-option>
+                </md-select>
+              </md-input-container>
+
+            </div>
+          </md-content>
+        </fieldset>
+
+          <md-input-container class="md-block" flex-gt-sm>
+
+          <div ng-if="vm.errorMessage">
+            <b style="color:red;">
+                  {{vm.errorMessage}}
+                </b>
+          </div>
+        </md-input-container>
+
+      </md-content>
+
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button class="md-warn md-raised" ng-click="vm.download()" style="margin-right:20px;">
+        start
+      </md-button>
+
+
+    </md-dialog-actions>
+  </form>
+</md-dialog>

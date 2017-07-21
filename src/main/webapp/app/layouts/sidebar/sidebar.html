@@ -1,0 +1,64 @@
+<style type="text/css">
+.sdom-content-sidebar {
+    margin: 16px 0px 16px 16px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(35, 97, 121);
+}
+</style>
+<div ng-init="vm.checkAdminNotification()" layout="column" style="height:100%;">
+    <md-sidenav flex class="md-accent site-sidenav md-sidenav-left md-whiteframe-z2 sdom-content-sidebar" md-component-id="left" hide-print md-is-locked-open="$mdMedia('gt-sm')">
+        <header class="nav-header">
+            <a ng-href="#"><img class="png-icon" src="content/images/bosch/bosch-logo-no-bg.png" style="width: 230px; height: 140px;"></a>
+
+        </header>
+        <ul class="skip-links">
+            <li class="md-whiteframe-z2">
+                <md-button ng-click="focusMainContent($event)" href="#">Skip to content
+                </md-button>
+            </li>
+        </ul>
+        <md-content flex role="navigation">
+            <ul class="docs-menu">
+                <!-- <li class = "menu-heading md-subhead">
+                    <h2>Menu</h2>
+            </li> -->
+                <ul class="menu-nested-list">
+                    <li>
+                        <md-button ng-href="#/configurationtree" class="md-button-toggle md-button md-ink-ripple" ng-click="vm.goConfigurationTree()">
+                            Configuration Tree
+                        </md-button>
+                    </li>
+                    <li>
+                        <md-button ng-href="#/normalizationeditor" class="md-button-toggle md-button md-ink-ripple" ng-click="vm.goNormalizationEditor()">
+                            Normalization Editor
+                        </md-button>
+                    </li>
+                    <li has-authority="ROLE_ADMIN" >
+
+                        <md-button ng-href="#/adminpage" class="md-button-toggle md-button md-ink-ripple" ng-click="vm.goAdminPage()" >
+                            <div layout="row">Administration Board
+                            <md-icon ng-show="vm.adminNotification" md-font-library="material-icons" style="color:red; margin-left:4px">notifications_active</md-icon>
+                            </div>
+                        </md-button>
+
+                    </li>
+
+                </ul>
+                <!-- <li ng-repeat="section in menu.sections" class="parent-list-item {{section.className || ''}}"  ng-class="{'parentActive' : isSectionSelected(section)}">
+
+                <h2 class="menu-heading md-subhead" ng-if="section.type === 'heading'"id="heading_{{ section.name | nospace }}">{{section.name}}</h2>
+                <menu-link section="section" ng-if="section.type === 'link' && !section.hidden"></menu-link>
+                <menu-toggle section="section" ng-if="section.type === 'toggle' && !section.hidden"></menu-toggle>
+
+                <ul ng-if="section.children" class="menu-nested-list">
+                    <li ng-repeat="child in section.children" ng-class="{'childActive' : isSectionSelected(child)}">
+                        <menu-link section="child" ng-if="child.type === 'link'"></menu-link>
+                        <menu-toggle section="child" ng-if="child.type === 'toggle'"></menu-toggle>
+                    </li>
+                </ul>
+            </li> -->
+            </ul>
+        </md-content>
+    </md-sidenav>
+</div>

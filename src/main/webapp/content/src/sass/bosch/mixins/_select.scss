@@ -1,0 +1,11 @@
+@mixin make-select-option {
+  background: $rb-light-theme-primary-light;
+  color: $textColor;
+  font-weight: normal;
+}
+
+@mixin make-select-option-dark {
+  background: $rb-dark-theme-primary-dark;
+  color: $textColor_dark;
+  font-weight: normal;
+}

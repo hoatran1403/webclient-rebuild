@@ -1,0 +1,41 @@
+input[type="radio"].rb-radio-btn {
+  border: 0 none;
+  clip: rect(0px, 0px, 0px, 0px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+
+  & + label {
+    padding-left: 24px;
+
+    background: image-url("bosch/radiobutton.png") no-repeat left;
+    font-weight: normal;
+    cursor: pointer;
+  }
+
+  &.rb-invalid + label {
+    @include make-invalid();
+  }
+
+  &[disabled] + label {
+    @include make-disabled();
+  }
+}
+
+input[type="radio"].rb-radio-btn:checked + label {
+  background: image-url("bosch/radiobutton_selected.png") no-repeat left;
+}
+
+/************************************************************************************************************************* DARK */
+.dark {
+  input[type="radio"].rb-radio-btn + label {
+    background: image-url("bosch/radiobutton_dark.png") no-repeat left;
+  }
+
+  input[type="radio"].rb-radio-btn:checked + label {
+    background: image-url("bosch/radiobutton_dark_selected.png") no-repeat left;
+  }
+}

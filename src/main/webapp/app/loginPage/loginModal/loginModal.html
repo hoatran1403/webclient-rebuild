@@ -1,0 +1,72 @@
+<style type="text/css">
+    @media ( min-width: 768px) {
+        .modal-dialog {
+            width: 450px;
+            margin: 200px auto;
+            color: rgb(12, 77, 142);
+        }
+        .modal-content {
+            position: relative;
+            /*   background-color: #fff; */
+            -webkit-background-clip: padding-box;
+            background-clip: padding-box;
+            border: 1px solid #999;
+            border: 1px solid rgba(0, 0, 0, .2);
+            border-radius: 6px;
+            outline: 0;
+            -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+            box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+            background: rgba(212, 228, 239, 1);
+            background: -moz-linear-gradient(top, rgba(212, 228, 239, 1) 0%, rgba(167, 207, 235, 1) 50%, rgba(167, 207, 235, 1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(212, 228, 239, 1)), color-stop(50%, rgba(167, 207, 235, 1)), color-stop(100%, rgba(167, 207, 235, 1)));
+            background: -webkit-linear-gradient(top, rgba(212, 228, 239, 1) 0%, rgba(167, 207, 235, 1) 50%, rgba(167, 207, 235, 1) 100%);
+            background: -o-linear-gradient(top, rgba(212, 228, 239, 1) 0%, rgba(167, 207, 235, 1) 50%, rgba(167, 207, 235, 1) 100%);
+            background: -ms-linear-gradient(top, rgba(212, 228, 239, 1) 0%, rgba(167, 207, 235, 1) 50%, rgba(167, 207, 235, 1) 100%);
+            background: linear-gradient(to bottom, rgba(212, 228, 239, 1) 0%, rgba(167, 207, 235, 1) 50%, rgba(167, 207, 235, 1) 100%);
+            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#d4e4ef', endColorstr='#a7cfeb', GradientType=0);
+        }
+        .modal-backdrop.in {
+            filter: alpha(opacity=50);
+            opacity: 0;
+        }
+        @media ( min-width: 992px) .col-md-offset-2 {
+            margin-left: 10%;
+        }
+    }
+</style>
+
+
+<div class="modal-header">
+
+    <div style="float:right;"><img class="png-icon" src="content/images/bosch/bosch-logo-no-bg.png" style="width: 100px; height: 50px;"> </div>
+    <h2>
+        <b>Sign in</b>
+    </h2>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="alert alert-danger" ng-show="vm.authenticationError">
+                <strong>Failed to sign in!</strong> Please check your credentials and try again.
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <form class="form" role="form" ng-submit="vm.login($event)">
+                <div class="form-group">
+                    <label for="username">Login</label>
+                    <input type="text" class="form-control" id="username" placeholder="username" ng-model="vm.username">
+                </div>
+                <div class="form-group">
+
+                    <label for="password"> </label>
+                    <input type="password" class="form-control" id="password" placeholder="password" ng-model="vm.password">
+                </div>
+                <div style="height:30px;"></div>
+              
+                <div style="height:40px;"></div>
+                <button type="submit" class="btn btn-primary">Sign in</button>
+            </form>
+            <p></p>
+        </div>
+    </div>
+</div>

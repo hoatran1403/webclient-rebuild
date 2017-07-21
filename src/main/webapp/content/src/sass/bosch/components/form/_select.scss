@@ -1,0 +1,77 @@
+$select-caret-width: 35px;
+
+//.rb-select {
+//  @include make-button-background();
+//  overflow: hidden;
+//
+//  select {
+//    -webkit-appearance: none;
+//    -moz-appearance: none;
+//    appearance: none;
+//
+//    @include make-button-base();
+//
+//    background: transparent;
+//
+//    width: calc(100% + #{$select-caret-width});
+//    border: 0;
+//    border-radius: 0;
+//
+//    background-image: image-url("bosch/caret.png");
+//    background-repeat: no-repeat;
+//    background-position: calc(100% - #{$select-caret-width + 8px}) center;
+//
+//  }
+//}
+//
+//option {
+//  background: white;
+//}
+//
+//.dark {
+//  option {
+//    background: black;
+//  }
+//}
+
+select.rb-select {
+  padding: 5px 15px 5px 5px;
+  border: 0;
+  border-radius: 0;
+  @include make-button-background(image-url("bosch/caret.png"));
+  background-position: right center;
+  color: $textColor_dark;
+
+  &.rb-invalid {
+    @include make-invalid-border();
+  }
+
+  &[disabled] {
+
+  }
+}
+
+select.rb-select option {
+  @include make-select-option();
+}
+
+.dark {
+  select.rb-select option {
+    @include make-select-option-dark();
+  }
+}
+
+/**
+* Normalization
+**/
+
+select.rb-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  &::-ms-expand {
+    /* for IE 11 */
+    display: none;
+  }
+}

@@ -1,0 +1,23 @@
+ul.rb-navbar {
+
+  @include make-navbar();
+
+  li {
+    @include make-navbar-item();
+  }
+
+  li > * {
+    @include make-navbar-item-content();
+  }
+}
+
+
+/************** DARK **************/
+
+.dark {
+  ul.rb-navbar {
+    li {
+      @include make-navbar-item-dark();
+    }
+  }
+}

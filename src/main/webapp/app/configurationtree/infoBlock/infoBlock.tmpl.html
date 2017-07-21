@@ -1,0 +1,389 @@
+<style>
+    fieldset {
+        border: solid 1px #c0c0c0;
+        height: 100%;
+        display: block;
+        -webkit-margin-start: 2px;
+        -webkit-margin-end: 2px;
+        -webkit-padding-before: 0.35em;
+        -webkit-padding-start: 0.75em;
+        -webkit-padding-end: 0.75em;
+        -webkit-padding-after: 0.625em;
+        -moz-margin-start: 2px;
+        -moz-margin-end: 2px;
+        -moz-padding-before: 0.35em;
+        -moz-padding-start: 0.75em;
+        -moz-padding-end: 0.75em;
+        -moz-padding-after: 0.625em;
+        border-image-source: initial;
+        border-image-slice: initial;
+        border-image-width: initial;
+        border-image-outset: initial;
+        border-image-repeat: initial;
+        min-width: -webkit-min-content;
+        padding: 10px;
+    }
+
+    .legend {
+        width: initial;
+        border-bottom: initial;
+        margin-bottom: 0px;
+    }
+
+    h4 {
+        font-weight: bold;
+    }
+
+    md-dialog {
+        max-width: 60%;
+    }
+
+    .input-field {
+        background-color: #f2f2f2;
+    }
+
+    .infoBlock-fieldset {
+         border-style: solid;
+  border-width: 1px;
+  height: 100%;
+    }
+</style>
+<md-dialog flex-gt-sm>
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Extended Properties</h2>
+                <span flex></span>
+                 <md-button class="md-icon-button" ng-click="vm.hideDialog()">
+          <md-icon md-font-library="material-icons"><i class="material-icons">close</i></md-icon>
+        </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="General">
+                    <md-content class="md-padding">
+
+                        <fieldset>
+                            <legend class="legend">Revision</legend>
+                            <md-content>
+                                <div layout="row">
+                                    <div layout="column" flex-gt-sm="20">
+                                        <div>State:</div>
+                                        <div>State Component:</div>
+                                        <div>Created at:</div>
+                                        <div>Changed at:</div>
+                                        <div>Comment:</div>
+                                    </div>
+                                    <div layout="column" flex-gt-sm>
+                                        <div layout="row">
+                                            <div flex-gt-sm="50">{{vm.infoBlock.general.revState}}</div>
+                                            <div layout="row" flex>
+                                                <div flex-gt-sm="50">Document Protection</div>
+                                                <div flex-gt-sm>{{vm.infoBlock.general.revDocProtection}}</div>
+                                            </div>
+                                        </div>
+                                        <div>Change to {{vm.infoBlock.general.revState.toLowerCase()}}</div>
+                                        <div>
+                                            <br>
+                                        </div>
+                                        <div>
+                                            <br>
+                                        </div>
+                                        <div>{{vm.infoBlock.general.revComment}}</div>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </fieldset>
+                        <fieldset>
+                            <legend class="legend">Variant</legend>
+                            <md-content>
+                                <div layout="row">
+                                    <div layout="column" flex-gt-sm="20">
+                                        <div>Predecessor:</div>
+                                    </div>
+                                    <div layout="column" flex-gt-sm>
+                                        <div>{{vm.infoBlock.general.varPredecessor}}</div>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </fieldset>
+                        <fieldset>
+                            <legend class="legend">Element</legend>
+                            <md-content>
+                                <div layout="row">
+                                    <div layout="column" flex-gt-sm="20">
+                                        <div>El.Comment:</div>
+                                        <div>Longname DE:</div>
+                                        <div>Longname EN:</div>
+                                    </div>
+                                    <div layout="column" flex-gt-sm>
+                                        <div>{{vm.infoBlock.general.elComment}}</div>
+                                        <div>{{vm.infoBlock.general.elLongnameDE}}</div>
+                                        <div>{{vm.infoBlock.general.elLongnameEN}}</div>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </fieldset>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Alt./Rel.">
+                    <md-content class="md-padding">
+                        <fieldset>
+                            <legend class="legend">Alternative</legend>
+                            <md-content>
+                                <div layout="row">
+                                    <div layout="column" flex-gt-sm="20">
+                                        <div>Object:</div>
+                                        <div>Comment:</div>
+                                        <div>ASIL:</div>
+                                        <div>Customer:</div>
+                                        <div>ECU gen.:</div>
+                                        <div>Support State:</div>
+                                        <div>Disc. exp. date:</div>
+                                        <div>ProdLine:</div>
+                                        <div>Responsibility:</div>
+                                        <div>Respons.User:</div>
+                                    </div>
+                                    <div layout="column" flex-gt-sm>
+                                        <div>{{vm.infoBlock.alternative.altObject}}</div>
+                                        <div>{{vm.infoBlock.alternative.altComment}}</div>
+                                        <div>{{vm.infoBlock.alternative.altASIL}}</div>
+                                        <div>{{vm.infoBlock.alternative.altCustomer}}</div>
+                                        <div>{{vm.infoBlock.alternative.altECUgen}}</div>
+                                        <div layout="row">
+                                            <div flex-gt-sm="30">{{vm.infoBlock.alternative.altSupportState}}</div>
+                                            <div flex-gt-sm>{{vm.infoBlock.alternative.altSupportStateComment}}</div>
+                                        </div>
+                                        <div>
+                                            </br>
+                                        </div>
+                                        <div>{{vm.infoBlock.alternative.altProdLine}}</div>
+                                        <div>
+                                            </br>
+                                        </div>
+                                        <div>{{vm.infoBlock.alternative.altResponsUser}}</div>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </fieldset>
+                        <fieldset>
+                            <legend class="legend">Release</legend>
+                            <md-content>
+                                <div layout="row">
+                                    <div layout="column" flex-gt-sm="20">
+                                        <div>Object:</div>
+                                        <div>Comment:</div>
+                                    </div>
+                                    <div layout="column" flex-gt-sm>
+                                        <div>{{vm.infoBlock.alternative.relObject}}</div>
+                                        <div>{{vm.infoBlock.alternative.relComment}}</div>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </fieldset>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Reviews">
+                    <md-content class="md-padding">
+                        <fieldset>
+                            <legend class="legend">Concept Review</legend>
+                            <md-content>
+                                <div layout="row">
+                                    <div layout="column" flex-gt-sm="20">
+                                        <div>Flag:</div>
+                                        <div>Comment:</div>
+                                    </div>
+                                    <div layout="column" flex-gt-sm>
+                                        <div>{{vm.infoBlock.reviews.conRevFlag}}</div>
+                                        <div>{{vm.infoBlock.reviews.conRevComment}}</div>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </fieldset>
+                        <fieldset>
+                            <legend class="legend">Specification Review</legend>
+                            <md-content>
+                                <div layout="row">
+                                    <div layout="column" flex-gt-sm="20">
+                                        <div>Flag:</div>
+                                        <div>Comment:</div>
+                                    </div>
+                                    <div layout="column" flex-gt-sm>
+                                        <div>{{vm.infoBlock.reviews.speRevFlag}}</div>
+                                        <div>{{vm.infoBlock.reviews.speRevComment}}</div>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </fieldset>
+                        <fieldset>
+                            <legend class="legend">Software/Configuration/Integration Review</legend>
+                            <md-content>
+                                <div layout="row">
+                                    <div layout="column" flex-gt-sm="20">
+                                        <div>Flag:</div>
+                                        <div>Comment:</div>
+                                    </div>
+                                    <div layout="column" flex-gt-sm>
+                                        <div>{{vm.infoBlock.reviews.speRevFlag}}</div>
+                                        <div>{{vm.infoBlock.reviews.speRevComment}}</div>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </fieldset>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Description of changes">
+                    <md-content class="md-padding">
+                        <fieldset>
+                            <legend class="legend">Discription of changes (for Customer)</legend>
+                            <md-content>
+                                <div layout="row">
+                                    <div layout="column" flex-gt-sm="20">
+                                        <div>Flag:</div>
+                                    </div>
+                                    <div layout="column" flex-gt-sm>
+                                        <div>{{vm.infoBlock.descriptionOfChanges.forCustomers}}</div>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </fieldset>
+                        <fieldset>
+                            <legend class="legend">Discription of changes (for internal use only)</legend>
+                            <md-content>
+                                <div layout="row">
+                                    <div layout="column" flex-gt-sm="20">
+                                        <div>Flag:</div>
+                                    </div>
+                                    <div layout="column" flex-gt-sm>
+                                        <div>{{vm.infoBlock.descriptionOfChanges.forInternal}}</div>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </fieldset>
+                        <fieldset>
+                            <legend class="legend">Change hint for next version</legend>
+                            <md-content>
+                            </md-content>
+                        </fieldset>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Importance for application/Interfaces">
+                    <md-content class="md-padding">
+                        <div>{{vm.infoBlock.importanceForApplication.description}}</div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Condition">
+                    <md-content class="md-padding">
+                        <fieldset>
+                            <legend class="legend">Condition</legend>
+                            <md-content>
+                                <h4>USAGECONDITIONSYS: usage condition (machine readable - dependencies from system constants):</h4>
+                                <p style="background-color: #f2f2f2">{{vm.infoBlock.condition.usageConditionsys}}</p>
+                                <h4>USAGECONDITIONTXT: usage condition (free text - other dependencies)</h4>
+                                <p style="background-color: #f2f2f2">{{vm.infoBlock.condition.UsageConditionTxt}}</p>
+                            </md-content>
+                        </fieldset>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Surroundings">
+                    <md-content class="md-padding">
+                        <fieldset>
+                            <legend class="legend">Requirements (function package)</legend>
+                            <md-content>
+                                <h4>Software</h4>
+                                <p style="background-color: #f2f2f2">{{vm.infoBlock.surroundings.ReqSoftware}}</p>
+                                <h4>Additional Infomation</h4>
+                                <p style="background-color: #f2f2f2"> </p>
+                            </md-content>
+                        </fieldset>
+                        <fieldset>
+                            <legend class="legend">Change Request</legend>
+                            <md-content>
+                                <div layout="row">
+                                    <div layout="column" flex-gt-sm="20">
+                                        <div>System:</div>
+                                        <div>REQM-Id(RQ1-Release):</div>
+                                    </div>
+                                    <div layout="column" flex-gt-sm>
+                                        <div>{{vm.infoBlock.surroundings.ChReqSystem}}</div>
+                                        <div>{{vm.infoBlock.surroundings.chReqMID}}</div>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </fieldset>
+                    </md-content>
+                </md-tab>
+                <md-tab label="State of translation">
+                    <md-content class="md-padding">
+                        <fieldset>
+                            <legend class="legend">German</legend>
+                            <md-content>
+                                <div layout="row">
+                                    <div layout="column" flex-gt-sm="20">
+                                        <div>State of translation:</div>
+                                        <div>Date:</div>
+                                    </div>
+                                    <div layout="column" flex-gt-sm>
+                                        <div>{{vm.infoBlock.stateOfTranslation.GEStateOfTranslation}}</div>
+                                        <div>{{vm.infoBlock.stateOfTranslation.GEDate}}</div>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </fieldset>
+                        <fieldset>
+                            <legend class="legend">English</legend>
+                            <md-content>
+                                <div layout="row">
+                                    <div layout="column" flex-gt-sm="20">
+                                        <div>State of translation:</div>
+                                        <div>Date:</div>
+                                    </div>
+                                    <div layout="column" flex-gt-sm>
+                                        <div>{{vm.infoBlock.stateOfTranslation.ENStateOfTranslation}}</div>
+                                        <div>{{vm.infoBlock.stateOfTranslation.ENDate}}</div>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </fieldset>
+                        <fieldset>
+                            <legend class="legend">French</legend>
+                            <md-content>
+                                <div layout="row">
+                                    <div layout="column" flex-gt-sm="20">
+                                        <div>State of translation:</div>
+                                        <div>Date:</div>
+                                    </div>
+                                    <div layout="column" flex-gt-sm>
+                                        <div>{{vm.infoBlock.stateOfTranslation.FRStateOfTranslation}}</div>
+                                        <div>{{vm.infoBlock.stateOfTranslation.FRDate}}</div>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </fieldset>
+                        <fieldset>
+                            <legend class="legend">Italian</legend>
+                            <md-content>
+                                <div layout="row">
+                                    <div layout="column" flex-gt-sm="20">
+                                        <div>State of translation:</div>
+                                        <div>Date:</div>
+                                    </div>
+                                    <div layout="column" flex-gt-sm>
+                                        <div>{{vm.infoBlock.stateOfTranslation.ITStateOfTranslation}}</div>
+                                        <div>{{vm.infoBlock.stateOfTranslation.ITDate}}</div>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </fieldset>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Release & Defect Description">
+                    <md-content class="md-padding">
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-dialog-content>
+       
+    </form>
+</md-dialog>

@@ -1,0 +1,19 @@
+@mixin make-button-base(){
+  border-radius: 2px;
+  border: 0;
+  padding: 6px 12px;
+  color: #ffffff;
+}
+
+@mixin make-button-background($image:null) {
+  @if $image {
+    @include linear-gradient-with-image($image, rgba(0, 129, 199, 1), rgba(0, 73, 134, 1));
+  }@else {
+    @include linearGradient(rgba(0, 129, 199, 1), rgba(0, 73, 134, 1));
+  }
+}
+
+@mixin make-button($image: null) {
+  @include make-button-base();
+  @include make-button-background($image);
+}

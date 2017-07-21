@@ -1,0 +1,9 @@
+@mixin make-header() {
+  background: image-url("bosch/bosch_logo.png") no-repeat right bottom;
+  width: 100%;
+  height: $lg-header-height;
+}
+
+@mixin make-header-dark() {
+  background: image-url("bosch/bosch_logo_dark.png") no-repeat right bottom;
+}

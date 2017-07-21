@@ -1,0 +1,85 @@
+/*********************************************************************************************************************************
+**********************************************             COLORS              ***************************************************
+*********************************************************************************************************************************/
+// PRIMARY COLORS
+$rb-light-theme-primary-dark: #687175;
+$rb-light-theme-primary-medium-dark: #dbe9f9;
+$rb-light-theme-primary-medium-light: rgba(255, 255, 255, .72);
+$rb-light-theme-primary-light: #fff;
+// SECONDARY COLORS
+$rb-light-theme-secondary-dark: #26547a;
+$rb-light-theme-secondary-medium-dark: #004986;
+$rb-light-theme-secondary-medium-light: #0081c7;
+$rb-light-theme-secondary-light: #39c0ff;
+//Accent / signal colors
+$rb-light-theme-accent-green: #27a730;
+$rb-light-theme-accent-light-green: #82ff9c;
+$rb-light-theme-accent-yellow: #ffe400;
+$rb-light-theme-accent-greenbrown: #b39800;
+$rb-light-theme-accent-salmon: #ff6d2d;
+$rb-light-theme-accent-red: #ff4343;
+
+// PRIMARY COLORS
+$rb-dark-theme-primary-dark: #081622;
+$rb-dark-theme-primary-medium-dark: #112d44;
+$rb-dark-theme-primary-medium-light: #04527d;
+$rb-dark-theme-primary-light: #2da0ff;
+// SECONDARY COLORS
+$rb-dark-theme-secondary-dark: #0f273b;
+$rb-dark-theme-secondary-medium-dark: #004986;
+$rb-dark-theme-secondary-medium: #0081c7;
+$rb-dark-theme-secondary-medium-light: #39c0ff;
+$rb-dark-theme-secondary-light: #fff;
+//Accent / signal colors
+$rb-dark-theme-accent-green: #27a730;
+$rb-dark-theme-accent-light-green: #82ff9c;
+$rb-dark-theme-accent-creme: #b39800;
+$rb-dark-theme-accent-yellow: #ffe400;
+$rb-dark-theme-accent-salmon: #ff6d2d;
+$rb-dark-theme-accent-red: #ff4343;
+
+$rb-content-background-color: $rb-light-theme-primary-medium-light;
+$rb-content-background-color_dark: rgba($rb-dark-theme-primary-light, 0.13);
+
+$rb-content-border-color: rgba(255, 255, 255, 1);
+//$rb-content-border-color_dark: rgba(45, 160, 255, 0.40);
+$rb-content-border-color_dark: rgba($rb-dark-theme-primary-light, 0.4);
+
+$textColor: $rb-light-theme-secondary-dark;
+$textColor_inactive: #a1b6c8; // = rgba($textColor, .4) on #fff
+$textColor_readOnly: #8e9598; // = rgba($rb-light-theme-primary-dark, .75) on #fff
+$textColor_readOnlyInvalid: #FF7D7D;
+
+$textColor_selected: #39c0ff;
+
+$separatorColor: $rb-light-theme-primary-medium-dark;
+
+/************************************************************************************************************************* DARK */
+$textColor_dark: $rb-dark-theme-secondary-light;
+$textColor_inactive_dark: #185a8f;
+
+$separatorColor_dark: rgba($rb-dark-theme-primary-light, 0.4);
+
+
+$dropdownBackgroundColor_dark: rgba($rb-dark-theme-primary-dark, 0.85);
+
+
+/***********/
+/** Font **/
+/**********/
+$font-size: 14px;
+
+
+/************/
+/** SIZING **/
+/************/
+$tab-height: 40px;
+
+$lg-navigation-height:80px;
+$lg-header-height: $lg-navigation-height + 36px;
+$lg-content-bottom-offset: 40px;
+
+$content-top-offset: 40px;
+
+$content-title-height: 28px;
+

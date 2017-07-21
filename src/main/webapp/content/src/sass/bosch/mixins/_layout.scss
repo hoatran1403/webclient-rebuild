@@ -1,0 +1,9 @@
+@mixin make-rb-content($deduction:0px) {
+  margin: 0 2%;
+
+  @include make-expand-height($lg-header-height + $lg-content-bottom-offset + $deduction);
+}
+
+@mixin make-expand-height($deduction: 0px) {
+  height: calc(100% - #{$deduction});
+}

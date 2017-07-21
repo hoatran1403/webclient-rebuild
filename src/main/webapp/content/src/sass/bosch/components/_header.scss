@@ -1,0 +1,8 @@
+.rb-header {
+  @include make-header();
+}
+
+
+html.dark .rb-header {
+  @include make-header-dark();
+}

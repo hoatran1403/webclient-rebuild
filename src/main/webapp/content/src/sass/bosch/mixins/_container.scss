@@ -1,0 +1,70 @@
+@mixin make-content-pane {
+  position: relative;
+  padding: 8px;
+  background-color: $rb-content-background-color;
+
+  //box-shadow: 0 0 0 1px $rb-content-border-color;
+  border: 1px solid $rb-content-border-color;
+  border-radius: 2px;
+
+  @include make-light-corner-top-light;
+
+  @include make-light-corner-bottom-light;
+}
+
+@mixin make-content-pane-dark {
+  background-color: $rb-content-background-color_dark;
+
+  //box-shadow: 0 0 0 1px $rb-content-border-color_dark;
+  border: 1px solid $rb-content-border-color_dark;
+
+  @include make-light-corner-top-dark;
+
+  @include make-light-corner-bottom-dark;
+}
+
+@mixin make-content-title {
+  position: relative;
+  top: -14px;
+  display: inline-block;
+
+  //margin: -6px 0 8px 10px;
+  padding: 4px 8px;
+  cursor: default;
+  z-index: 1;
+
+  &:before {
+    content: " ";
+    height: 100%;
+    width: 100%;
+    display: block;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    border-radius: 2px;
+
+    @include linearGradient(#f9fcff, #d4dde8);
+
+    -webkit-transform: skewX(-14deg);
+    -moz-transform: skewX(-14deg);
+    -ms-transform: skewX(-14deg);
+    -o-transform: skewX(-14deg);
+    transform: skewX(-14deg);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+    box-shadow: 3px 3px 0px 0px rgba(192, 210, 224, 1);
+    pointer-events: none;
+  }
+}
+
+@mixin make-content-title_dark {
+  &:before {
+    @include linearGradient(#153f5e, #0e263a);
+
+    box-shadow: 3px 3px 0px 0px rgba(11, 33, 50, 1);
+  }
+}

@@ -1,0 +1,33 @@
+@mixin make-light-corner-top($image) {
+  &:before {
+    position: absolute;
+    margin-top: -39px;
+    margin-left: 20px;
+    content: $image;
+    pointer-events:none;
+  }
+}
+
+@mixin make-light-corner-bottom($image) {
+  &:after {
+    position: absolute;
+    bottom: -6px;
+    right: 0;
+    content: $image;
+    pointer-events:none;
+  }
+}
+
+@mixin make-light-corner-top-light() {
+  @include make-light-corner-top(image-url("bosch/bosch_lightCorner_top.png"));
+}
+@mixin make-light-corner-top-dark() {
+  @include make-light-corner-top(image-url("bosch/bosch_lightCorner_top_black.png"));
+}
+
+@mixin make-light-corner-bottom-light() {
+  @include make-light-corner-bottom(image-url("bosch/bosch_lightCorner_bottom.png"))
+}
+@mixin make-light-corner-bottom-dark() {
+  @include make-light-corner-bottom(image-url("bosch/bosch_lightCorner_bottom_black.png"))
+}

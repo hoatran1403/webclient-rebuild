@@ -1,0 +1,36 @@
+html {
+  height: 100%;
+  width: 100%;
+
+  /* The containerShadows have more than 100% width and would make the whole app scroll horizontally.
+  Perhaps there is a way to ignore that.*/
+  overflow: hidden;
+
+  @include make-app-background();
+}
+
+
+body {
+  background: image-url("bosch/bg_header_light.png") no-repeat top;
+  background-size: 100% 768px;
+  margin: 0;
+  height: 100%;
+  padding: 0px !important;
+}
+
+body.noBackground {
+  background: none;
+}
+
+/************************************************************************************************************************* DARK */
+html.dark {
+  @include make-app-background-dark();
+}
+
+
+.dark body {
+  background: image-url("bosch/bg_header_dark.png") no-repeat top;
+  background-size: 100% 768px;
+}
+
+

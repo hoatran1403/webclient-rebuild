@@ -1,0 +1,41 @@
+$menu-skew-value: 15deg;
+$navbar-item-background-color-active: $rb-light-theme-primary-medium-dark;
+$navbar-item-background-color-active-dark: $rb-light-theme-secondary-medium-dark;
+
+@mixin make-navbar() {
+  display: flex;
+  list-style: none;
+  height: $lg-navigation-height;
+}
+
+@mixin make-navbar-item() {
+  display: inline-block;
+  cursor: pointer;
+  transform: skew(-#{$menu-skew-value}, 0);
+  border-right: 1px solid $separatorColor;
+
+  :hover, :focus {
+    color: $textColor_selected;
+    text-decoration: none;
+  }
+
+  &.rb-is-active {
+    background-color: $navbar-item-background-color-active;
+  }
+}
+
+@mixin make-navbar-item-dark() {
+  border-right: 1px solid $separatorColor_dark;
+  &.rb-is-active {
+    background-color: $navbar-item-background-color-active-dark;
+  }
+}
+
+@mixin make-navbar-item-content() {
+  display: table-cell;
+  vertical-align: middle;
+  transform: skew(#{$menu-skew-value}, 0);
+
+  height: $lg-navigation-height;
+  padding: 0 $lg-navigation-height/2;
+}

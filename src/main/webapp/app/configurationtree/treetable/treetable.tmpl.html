@@ -1,0 +1,346 @@
+<!-- packageList.treeTemplate.html -->
+<style>
+  table {
+    width: 100%;
+  }
+
+  .highlightedPhrase {
+    background-color: #FF0;
+  }
+
+  .highlightedRow {
+    color: rgb(63, 81, 181);
+    background-color: #DCDCDC;
+  }
+
+  .disabledRow {
+    color: rgb(101, 97, 97) !important;
+  }
+  /*  */
+
+  .table-nested .cell-input {
+    width: 18px;
+  }
+
+  .table-nested .children {
+    cursor: pointer;
+    display: none;
+    margin-left: 10px;
+  }
+
+  .table-nested .opened>.children {
+    display: table-row;
+  }
+
+  .table-nested .opened>tr>.cell-name>div>div>.indent {
+    moz-transform: rotate(90deg);
+    ms-transform: rotate(90deg);
+    o-transform: rotate(90deg);
+    transform: rotate(90deg);
+    webkit-transform: rotate(90deg);
+  }
+
+  .table-nested .parent>.cell-name {
+    font-weight: 600;
+    cursor: pointer
+  }
+  /* The ::before pseudo-element is used to draw the horizontal lines. */
+
+  .table-nested .parent>.cell-name>div>div>.indent {
+    /*content: ">";*/
+    display: inline-block;
+    moz-transition: 0 .2s;
+    ms-transition: 0 .2s;
+    o-transition: 0 .2s;
+    transition: transform .2s;
+    webkit-transition: 0 .2s;
+    width: 10px;
+  }
+
+
+  .table-nested th+th,
+  .table-nested th+td,
+  .table-nested td+th,
+  .table-nested td+td {
+    padding-left: 5px;
+  }
+
+  .table-nested th,
+  .table-nested td {
+    padding: 0 0 0 15px !important;
+  }
+
+  .description-table-nested {
+    /*table-layout: fixed;*/
+    width: 100%;
+  }
+
+  .description-table-nested .children {
+    cursor: pointer;
+    display: none;
+  }
+
+  .description-table-nested .opened>.children {
+    display: table-row;
+  }
+
+  .description-table-nested .parent>.cell-name {
+    font-weight: 600;
+    cursor: pointer
+  }
+
+
+
+  .description-table-nested th+th,
+  .description-table-nested th+td,
+  .description-table-nested td+th,
+  .description-table-nested td+td {
+    /* padding-left: 5px; */
+  }
+
+  .description-table-nested th {
+    padding: 0 0 !important;
+  }
+
+  .description-table-nested td {
+    padding: 0 0 !important;
+  }
+
+
+  table.md-table th.md-column {
+    border-bottom: 1px rgba(0, 0, 0, 0.12) solid;
+  }
+
+  table.md-table td.md-cell {
+    border: none;
+    color: rgba(5, 102, 103, 1);
+  }
+
+
+
+  .description-table-nested td {
+    white-space: nowrap;
+  }
+
+  .grip {
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    /*background-image: url('http://lorempixel.com/20/20/abstract');*/
+    margin-left: -5px;
+    position: relative;
+    z-index: 88;
+    cursor: e-resize;
+  }
+
+  .grip:hover {
+    background-position: 20px 0px;
+  }
+
+  .dragging .grip {
+    background-position: 40px 0px;
+  }
+
+  table.md-table {
+    overflow: inherit !important;
+  }
+
+  table.md-table td.md-cell {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0px;
+    max-width: 0px;
+  }
+
+  .label {
+    color: grey;
+  }
+
+  md-option {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .remove-th-style {
+    height: 0px !important;
+  }
+
+  .fixed-header {
+    width: inherit;
+    position: fixed;
+    background: white;
+  }
+</style>
+<script id="table_list_tree.html" type="text/ng-template">
+  <tr md-row ng-class="{ parent: item.children}" ng-init="parentScope = $parent.$parent;">
+    <td md-cell class="cell-name" ng-class="{'disabledRow': item.usageState == 'DISABLED'}" id="{{ item.fullname }}" style="width: 100%; height:  55px !important; border-left: 5px rgba(5,102,103,1) solid;"
+      ng-click="vm.expandNode(item)" ng-dblclick="vm.openWindow(item)">
+      <div layout="row">
+
+        <div ng-switch="item.iconUrl" layout="row">
+          <img ng-switch-default ng-src="{{item.iconUrl}}" style="width:15px; height: 15px;" alt="{{item.iconUrl}}">
+          <div ng-switch-when="null" class="indent"> > </div>
+          <div ng-switch-when="null" ng-switch="item.opened">
+            <i ng-switch-when="false" class="material-icons" ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style=" color: rgba(5, 102, 103, 0.87);">folder</i>
+            <i ng-switch-when="true" class="material-icons" ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style=" color: rgba(5, 102, 103, 0.87);">folder_open</i>
+          </div>
+        </div>
+
+        <div style="margin-left: 6px;" flex>
+          {{item.fullname}} {{(item.children.length > 0 ? ' [ ' + item.children.length + ' ]' : '')}}
+          <md-tooltip md-direction="bottom" md-delay="500">
+            {{item.fullname}} {{(item.children.length > 0 ? ' [ ' + item.children.length + ' ]' : '')}}
+          </md-tooltip>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr md-row class="children" ng-if="item.children.length > 0">
+    <td>
+      <table md-table class="table-nested">
+        <thead md-head md-order="item.fullname"></thead md-head>
+        <tbody md-body ng-class="{ opened: item.opened}" ng-include="'table_list_tree.html'" ng-repeat="item in item.children track by $index"></tbody>
+      </table>
+    </td>
+  </tr>
+</script>
+<script id="table_list_description.html" type="text/ng-template">
+  <tr md-row ng-class="{ parent: item.children, 'disabledRow': item.usageState == 'DISABLED' }" ng-init="parentScope = $parent.$parent;">
+    <td md-cell ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important; text-align: left;"
+      ng-bind="item.clazz"></td>
+    <td md-cell ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important; text-align: left;"
+      ng-bind="item.elementType"></td>
+    <td md-cell ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important; text-align: left;"
+      ng-bind="item.state"></td>
+    <td md-cell ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important; text-align: left;"
+      ng-bind="item.cond">
+      <md-tooltip ng-if="item.cond != ''" md-direction="bottom">{{item.cond}}</md-tooltip>
+    </td>
+    <td md-cell ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important; text-align: left;"
+      ng-bind="item.usageConditionSys">
+      <md-tooltip ng-if="item.usageConditionSys != ''" md-direction="bottom">{{item.usageConditionSys}}</md-tooltip>
+    </td>
+    <td md-cell ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important; text-align: left;"
+      ng-bind="item.creationDate" hide-xs hide-sm>
+      <md-tooltip ng-if="item.creationDate != ''" md-direction="bottom">{{item.creationDate}}</md-tooltip>
+    </td>
+    <td md-cell ng-class="{'disabledRow': item.usageState == 'DISABLED'}" style="padding-left: 8px !important; height: 55px !important; text-align: left;"
+      ng-bind="item.creationUser" hide-xs hide-sm hide-md></td>
+    <td md-cell style="padding-left: 8px !important; height: 55px !important;">
+      <md-checkbox class="md-warn" aria-label="Custom checkbox" ng-checked="vm.isExisted(item)" ng-click="vm.toggleCheckbox(item)"></md-checkbox>
+    </td>
+  </tr>
+  <tr md-row class="children" ng-if="item.children.length > 0">
+    <td colspan="8">
+      <table md-table class="description-table-nested">
+        <thead md-head md-order="item.fullname">
+          <tr md-row class="remove-th-style">
+            <th>
+              <div style="width: 40px !important;height:0px; padding-left: 8px;"></div>
+            </th>
+            <th>
+              <div style="width: 37px !important;height:0px; padding-left: 8px;"></div>
+            </th>
+            <th>
+              <div style="width: 45px !important;height:0px; padding-left: 8px;"></div>
+            </th>
+            <th>
+              <div style="width: 46px !important;height:0px; padding-left: 8px;"></div>
+            </th>
+            <th>
+              <div style="width: 130px !important;height:0px; padding-left: 8px;"></div>
+            </th>
+            <th hide-xs hide-sm>
+              <div style="width: 80px !important;height:0px; padding-left: 8px;"></div>
+            </th>
+            <th hide-xs hide-sm hide-md>
+              <div style="width: 78px !important;height:0px; padding-left: 8px;"></div>
+            </th>
+            <th>
+              <div style="width: 26px !important;height:0px; padding-left: 8px;"></div>
+            </th>
+          </tr>
+        </thead md-head>
+        <tbody md-body ng-class="{ opened: item.opened }" ng-include="'table_list_description.html'" ng-repeat="item in item.children track by $index">
+        </tbody>
+      </table>
+    </td>
+
+  </tr>
+</script>
+
+<div layout="column" ng-cloak style="margin-left:10px;" ng-init="vm.init()" flex>
+  <md-table-container style="overflow: auto" layout="row" flex>
+    <div flex="20" style="position: relative !important; min-width:180px;">
+      <table md-table class="table-nested">
+        <thead md-head md-order="vm.pagination.query.order">
+          <tr md-row>
+            <th md-column style="overflow: hidden; text-align: center; padding : 0px !important">
+              <div class="fixed-header" flex>All objects [{{vm.list.length}}]</div>
+            </th>
+          </tr>
+        </thead>
+        <tbody md-body ng-class="{opened: item.opened}" style="line-height: 30px;" ng-include="'table_list_tree.html'" ng-repeat="item in vm.list | limitTo: vm.pagination.query.limit : (vm.pagination.query.page -1) * vm.pagination.query.limit track by $index">
+
+        </tbody>
+      </table>
+
+    </div>
+    <div style="margin-right: 10px !important" flex>
+
+      <table md-table class="description-table-nested">
+        <thead md-head md-order="vm.pagination.query.order">
+          <tr md-row>
+            <th md-column style="padding-left: 8px !important; text-align: left;">
+              <div style="width: 37px !important; height: 12px;">
+                <div class="fixed-header">Class</div>
+              </div>
+            </th>
+            <th md-column style="padding-left: 8px !important; text-align: left;">
+              <div style="width: 33px !important; height: 12px;">
+                <div class="fixed-header">Type</div>
+              </div>
+            </th>
+            <th md-column style="padding-left: 8px !important; text-align: left;">
+              <div style="width: 40px !important; height: 12px;">
+                <div class="fixed-header">State</div>
+              </div>
+            </th>
+            <th md-column style="padding-left: 8px !important; text-align: left;">
+              <div style="width: 41px !important; height: 12px;">
+                <div class="fixed-header">COND</div>
+              </div>
+            </th>
+            <th md-column style="padding-left: 8px !important; text-align: left;">
+              <div style="width: 130px !important; height: 12px;">
+                <div class="fixed-header">USAGECONDITIONSYS</div>
+              </div>
+            </th>
+            <th md-column style="padding-left: 8px !important; text-align: left;" hide-xs hide-sm>
+              <div style="width: 80px !important; height: 12px;">
+                <div class="fixed-header">Creation date</div>
+              </div>
+            </th>
+            <th md-column style="padding-left: 8px !important; text-align: left;" hide-xs hide-sm hide-md>
+              <div style="width: 78px !important; height: 12px;">
+                <div class="fixed-header">Creation user</div>
+              </div>
+            </th>
+            <th md-colum style="padding-left: 8px !important; height: 55px !important;">
+              <div style="width: 20px !important; height: 12px;">
+                <md-checkbox class="md-warn" aria-label="Custom checkbox" ng-checked="vm.selectedList.length > 0 " ng-click="vm.clearSelectedList()"></md-checkbox>
+              </div>
+            </th>
+
+          </tr>
+        </thead>
+        <tbody md-body ng-class="{opened: item.opened}" ng-include="'table_list_description.html'" ng-repeat="item in vm.list | limitTo: vm.pagination.query.limit : (vm.pagination.query.page -1) * vm.pagination.query.limit track by $index">
+        </tbody>
+      </table>
+
+    </div>
+  </md-table-container>
+  <md-table-pagination md-limit="vm.pagination.query.limit" md-limit-options="vm.pagination.limitOptions" md-page="vm.pagination.query.page"
+    md-total="{{vm.list.length}}" md-page-select="vm.pagination.options.pageSelect" md-boundary-links="vm.pagination.options.boundaryLinks"></md-table-pagination>
+</div>

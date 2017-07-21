@@ -1,0 +1,101 @@
+.rb-tabs {
+  display: flex;
+  margin: 0px;
+  white-space: nowrap;
+}
+
+.rb-tabs li {
+  list-style: none;
+  margin: 0px;
+  border-bottom: 1px solid $rb-content-border-color;
+  background: $rb-light-theme-primary-light image-url("bosch/bosch_tabSeperator.png") no-repeat left;
+}
+
+.rb-tabs li * {
+  padding: 8px 20px;
+  text-decoration: none;
+  display: inline-block;
+  color: $textColor_inactive;
+}
+
+.rb-tabs li *:focus,
+.rb-tabs li *:hover,
+.rb-tabs li.rb-is-active *{
+  color: $textColor;
+}
+
+.rb-tabs li.disabled {
+  color: $textColor_inactive;
+  cursor: default;
+}
+
+.rb-tabs li.rb-is-active {
+  border-bottom-style: none;
+  border-left: 1px solid $rb-content-border-color;
+  border-top: 1px solid $rb-content-border-color;
+  border-right: 1px solid $rb-content-border-color;
+}
+
+.rb-tabs li.rb-is-active,
+.rb-tabs li:hover,
+.rb-tabs li:focus {
+  background-color: $rb-content-background-color;
+}
+
+.rb-tabs li.rb-spacer,
+.dark .rb-tabs li.rb-spacer {
+  background-color: transparent;
+  flex: 1;
+}
+
+.rb-tabs + .rb-content-pane:before {
+  visibility: hidden;
+}
+
+/* separators */
+.rb-tabs li:first-of-type,
+.dark .rb-tabs li:first-of-type,
+.rb-tabs li.rb-is-active,
+.dark .rb-tabs li.rb-is-active,
+.rb-tabs li.rb-is-active + li,
+.dark .rb-tabs li.rb-is-active + li,
+.rb-tabs li.rb-spacer,
+.dark .rb-tabs li.rb-spacer {
+  background-image: none;
+}
+
+.rb-tabs + .rb-content-pane {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-top-style: none;
+}
+
+.dark .rb-tabs + .rb-content-pane {
+  border-top-style: none;
+}
+
+.dark .rb-tabs li {
+  background: darken($rb-content-background-color_dark, 10) image-url("bosch/bosch_tabSeperator_dark.png") no-repeat left;
+  border-color: rgba($rb-content-border-color_dark, 0.5);
+}
+
+.dark .rb-tabs li.rb-is-active,
+.dark .rb-tabs li:hover,
+.dark .rb-tabs li:focus {
+  background-color: $rb-content-background-color_dark;
+}
+
+.dark .rb-tabs li * {
+  color: $textColor_inactive_dark;
+}
+
+.dark .rb-tabs li *:focus,
+.dark .rb-tabs li *:hover,
+.dark .rb-tabs li.rb-is-active *{
+  color: $textColor_dark;
+}
+
+.rb-tabs li.disabled {
+  color: $textColor_inactive_dark;
+  cursor: default;
+}

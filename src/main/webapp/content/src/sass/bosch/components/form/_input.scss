@@ -1,0 +1,114 @@
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input,
+textarea {
+  color: $textColor;
+  min-height: 32px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
+  background-clip: padding-box;
+
+  &.rb-invalid {
+    @include make-invalid-input;
+  }
+
+  &:hover {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+
+    &.rb-invalid {
+      @include make-invalid-input;
+    }
+  }
+
+  &:focus,
+  &:focus.rb-invalid {
+    color: $textColor;
+    border-color: $rb-light-theme-secondary-dark;
+    outline-color: transparent;
+    outline-style: none;
+  }
+
+  &[disabled] {
+    background-color: $rb-light-theme-primary-light;
+
+    &.rb-invalid {
+      @include make-invalid-input;
+    }
+  }
+
+  &[readonly] {
+    color: $textColor_readOnly;
+
+    &.rb-invalid {
+      color: $textColor_readOnlyInvalid;
+    }
+  }
+}
+
+input {
+  padding: 0px 6px;
+}
+
+textarea {
+  padding: 6px;
+}
+
+input[type="search"] {
+  background: image-url("bosch/search-icon-2.png") 8px center no-repeat;
+  padding-left: 28px;
+}
+
+/************************************************************************************************************************* DARK */
+html.dark {
+  input,
+  textarea {
+    color: $textColor_dark;
+    box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid rgba($rb-dark-theme-primary-light, 0.08);
+
+    &.rb-invalid {
+      @include make-invalid-input;
+    }
+
+    &:hover {
+      border-bottom: 1px solid rgba($rb-dark-theme-primary-light, 0.16);
+
+      &.rb-invalid {
+        @include make-invalid-input;
+      }
+    }
+
+    &:focus,
+    &:focus.rb-invalid {
+      color: $textColor_dark;
+      border: 1px solid rgba($rb-dark-theme-primary-light, 0.7);
+    }
+
+    &[disabled] {
+      color: $textColor_readOnly;
+
+      &.rb-invalid {
+        @include make-invalid-input;
+      }
+    }
+
+    &[readonly] {
+      color: $textColor_readOnly;
+
+      &.rb-invalid {
+        color: $textColor_readOnlyInvalid;
+      }
+    }
+  }
+
+  input[type="search"] {
+    background-image: image-url("bosch/search-icon-2-dark.png");
+  }
+}

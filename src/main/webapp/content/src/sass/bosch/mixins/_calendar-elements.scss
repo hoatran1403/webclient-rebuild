@@ -1,0 +1,15 @@
+@mixin make-calendar-icon($image) {
+  background: image-url("bosch/"+$image+".png") no-repeat 0 0;
+  width: 12px;
+  height: 15px;
+}
+
+@mixin fill-calendar-cell($shade) {
+  @if $shade == "dark" {
+    background-color: $rb-dark-theme-primary-dark !important;
+    border: 1px solid $rb-dark-theme-primary-dark !important;
+  } @else {
+    background-color: $rb-light-theme-primary-dark !important;
+    border: 1px solid $rb-light-theme-primary-dark !important;
+  }
+}

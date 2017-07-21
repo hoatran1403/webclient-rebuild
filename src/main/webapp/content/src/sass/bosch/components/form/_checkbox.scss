@@ -1,0 +1,42 @@
+input[type="checkbox"].rb-checkbox {
+  border: 0 none;
+  clip: rect(0px, 0px, 0px, 0px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+
+  &.rb-invalid + label {
+    @include make-invalid();
+  }
+}
+
+input[type="checkbox"].rb-checkbox + label {
+  padding-left: 24px;
+}
+
+input[type="checkbox"].rb-checkbox[disabled] + label {
+  @include make-disabled();
+}
+
+input[type="checkbox"].rb-checkbox + label {
+  background: image-url("bosch/checkbox_light.png") no-repeat left;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+input[type="checkbox"].rb-checkbox:checked + label {
+  background: image-url("bosch/checkbox_light_checked.png") no-repeat left;
+}
+
+/************************************************************************************************************************* DARK */
+html.dark input[type="checkbox"].rb-checkbox + label {
+  background: image-url("bosch/checkbox_dark.png") no-repeat left;
+}
+
+
+html.dark input[type="checkbox"].rb-checkbox:checked + label {
+  background: image-url("bosch/checkbox_dark_checked.png") no-repeat left;
+}

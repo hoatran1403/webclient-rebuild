@@ -1,0 +1,48 @@
+<style media="screen">
+  fieldset {
+    border: solid 1px #c0c0c0;
+    height: 100%;
+    display: block;
+    -webkit-margin-start: 2px;
+    -webkit-margin-end: 2px;
+    -webkit-padding-before: 0.35em;
+    -webkit-padding-start: 0.75em;
+    -webkit-padding-end: 0.75em;
+    -webkit-padding-after: 0.625em;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    min-width: -webkit-min-content;
+  }
+
+  .legend {
+    color: #3F51B5;
+    width: initial;
+    border-bottom: initial;
+    margin-bottom: 0px;
+  }
+
+  md-card {
+    overflow: hidden !important;
+  }
+</style>
+
+<md-dialog aria-label="Objects Comparation" style="width:80%;height:75%;">
+  <form ng-cloak layout="column" flex>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Objects Comparation</h2>
+        <span flex></span>
+         <md-button class="md-icon-button" ng-click="vm.hide()">
+          <md-icon md-font-library="material-icons"><i class="material-icons">close</i></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content flex>
+      <objects-compare layout="row" flex> </objects-compare>
+    </md-dialog-content>
+   
+  </form>
+</md-dialog>

@@ -1,0 +1,29 @@
+@mixin make-app-background() {
+  background-position: bottom;
+  background-repeat: no-repeat;
+
+  @include gradient-three-color-with-image(image-url("bosch/bg-1920x1080.png"), #f2f7fe, #b7c9d9, #dfebfa);
+
+  @media (max-width: 1280px) {
+    @include gradient-three-color-with-image(image-url("bosch/bg-1280x800.png"), #f2f7fe, #b7c9d9, #dfebfa);
+  }
+
+  @media (max-width: 800px) {
+    @include gradient-three-color-with-image(image-url("bosch/bg-800x600.png"), #f2f7fe, #b7c9d9, #dfebfa);
+  }
+}
+
+@mixin make-app-background-dark() {
+  background-position: bottom;
+  background-repeat: no-repeat;
+
+  @include gradient-three-color-with-image(image-url("bosch/bg-1920x1080_dark.png"), $rb-dark-theme-primary-medium-dark, $rb-dark-theme-primary-dark, $rb-dark-theme-primary-medium-dark);
+
+  @media (max-width: 1280px) {
+    @include gradient-three-color-with-image(image-url("bosch/bg-1280x800_dark.png"), $rb-dark-theme-primary-medium-dark, $rb-dark-theme-primary-dark, $rb-dark-theme-primary-medium-dark);
+  }
+
+  @media (max-width: 800px) {
+    @include gradient-three-color-with-image(image-url("bosch/bg-800x600_dark.png"), $rb-dark-theme-primary-medium-dark, $rb-dark-theme-primary-dark, $rb-dark-theme-primary-medium-dark);
+  }
+}

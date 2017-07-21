@@ -1,0 +1,72 @@
+.pull-left {
+  float: left !important;
+}
+
+.pull-right {
+  float: right !important;
+}
+
+.rb-calendar-container {
+  margin: 22px;
+  width: 278px;
+}
+
+.rb-calendar-back-icon {
+  @include make-calendar-icon("back_icon");
+}
+
+.rb-calendar-forward-icon {
+  @include make-calendar-icon("forward_icon");
+}
+
+.rb-calendar-header-type1 {
+  th {
+    padding: 0px !important;
+    font-size: 20px !important;
+  }
+  &:after {
+    line-height: 1.25em;
+    content: "\0000a0";
+    display: block;
+  }
+}
+
+.rb-calendar-dates-type1 {
+  width: 100%;
+  margin-top: 20px;
+  border-spacing: 2px;
+  border-collapse: separate;
+  td, th {
+    font-weight: 100;
+    font-size: 11px;
+    text-align: center;
+  }
+  td div {
+    padding: 11px;
+  }
+  tbody td {
+    background-color: $rb-light-theme-primary-light;
+  }
+  .rb-calendar-date-selected-range {
+    @include linearGradient(#39c0ff, #0081c7);
+    color: #fff;
+  }
+  .rb-calendar-nodate {
+    @include fill-calendar-cell(light);
+  }
+}
+
+.rb-calendar-date-selected {
+  @include linearGradient(#82ff9c, #27a730);
+  color: $rb-light-theme-primary-light;
+}
+
+.dark .rb-calendar-dates-type1 {
+  tbody td {
+    border: 1px solid $rb-content-border-color_dark;
+    background-color: $rb-dark-theme-secondary-dark;
+  }
+  .rb-calendar-nodate {
+    @include fill-calendar-cell(dark);
+  }
+}

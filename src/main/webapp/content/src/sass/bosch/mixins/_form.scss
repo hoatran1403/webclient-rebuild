@@ -1,0 +1,20 @@
+@mixin make-invalid {
+  color: $rb-light-theme-accent-red;
+}
+
+@mixin make-invalid-border {
+  border: $rb-light-theme-accent-red 1px solid;
+}
+
+@mixin make-invalid-input {
+  @include make-invalid;
+  @include make-invalid-border;
+}
+
+@mixin make-disabled {
+  opacity: .5;
+
+  .dark & {
+    opacity: .6;
+  }
+}

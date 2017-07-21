@@ -1,0 +1,25 @@
+.rb-red *, .rb-red{
+  color: $rb-light-theme-accent-red;
+}
+
+.rb-yellow *, .rb-yellow{
+  color: $rb-light-theme-accent-yellow;
+}
+
+.rb-green *, .rb-green{
+  color: $rb-light-theme-accent-green;
+}
+
+.dark {
+  .rb-red *, .rb-red {
+    color: $rb-dark-theme-accent-red;
+  }
+
+  .rb-yellow *, .rb-yellow {
+    color: $rb-dark-theme-accent-yellow;
+  }
+
+  .rb-green *, .rb-green {
+    color: $rb-dark-theme-accent-green;
+  }
+}

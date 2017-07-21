@@ -1,0 +1,28 @@
+select.rb-select-alternative {
+  @extend select.rb-select;
+  background: $rb-light-theme-primary-light image-url("bosch/caret-light.png") right center no-repeat;
+  color: $textColor;
+
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
+  background-clip: padding-box;
+}
+
+select.rb-select-alternative:focus {
+  background-image: image-url("bosch/caret-light-active.png");
+}
+
+/************************************************************************************************************************* DARK */
+html.dark {
+  select.rb-select-alternative {
+    background:  rgba(0, 0, 0, 0.15) image-url("bosch/caret-dark.png") right center no-repeat;
+    color: $textColor_inactive_dark;
+    box-shadow: 0 0 0 1px $dropdownBackgroundColor_dark;
+  }
+
+  select.rb-select-alternative:focus {
+    background-image: image-url("bosch/caret-dark-active.png");
+  }
+}

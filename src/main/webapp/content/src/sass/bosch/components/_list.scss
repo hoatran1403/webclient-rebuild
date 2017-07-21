@@ -1,0 +1,49 @@
+.rb-list {
+  padding: 0px;
+  margin: 0px;
+}
+
+.rb-list li {
+  cursor: pointer;
+  margin: 10px;
+  padding-bottom: 10px;
+  background: image-url("bosch/verticalList_seperator.png") left bottom no-repeat;
+  min-width: 162px;
+  list-style: none;
+}
+
+.rb-list li:last-child {
+  background: none;
+}
+
+.rb-list li:hover, .rb-list li:focus, .rb-list li.selected, .rb-list li.selected span {
+  color: $textColor_selected;
+}
+
+.rb-list li.selected {
+  background: image-url("bosch/verticalList_seperator_selected.png") left bottom no-repeat; // @todo
+}
+
+.rb-list li.disabled {
+  cursor: default;
+  color: $textColor_inactive;
+}
+
+
+/************************************************************************************************************************* DARK */
+
+html.dark .rb-list li {
+  background: image-url("bosch/verticalList_seperator_dark.png") left bottom no-repeat; // @todo
+}
+
+html.dark .rb-list li.selected {
+  background: image-url("bosch/verticalList_seperator_dark_selected.png") left bottom no-repeat; // @todo
+}
+
+html.dark .rb-list li.disabled {
+  color: $textColor_inactive_dark;
+}
+
+html.dark .rb-list li:last-child {
+  background: none;
+}

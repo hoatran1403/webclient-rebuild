@@ -1,0 +1,97 @@
+<style>
+  .md-input-focused {
+    color: #144c63 !important;
+    border-color: #144c63 !important;
+  }
+
+ .history-item {
+    color: #144c63 !important;
+  }
+</style>
+
+<md-dialog ng-init="vm.retrieveSearchList()" aria-label="Mango (Fruit)">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Search</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="vm.hide()">
+          <md-icon md-font-library="material-icons"><i class="material-icons">close</i></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="min-width:700px;min-height:400px;max-width:800px;max-height:810px; ">
+
+      <md-content class="md-padding">
+
+        <div layout="row">
+          <div flex="50" layout="column">
+            <!--<h2>History</h2>-->
+            <!--<div ng-repeat="item in vm.searchList track by $index">
+            <md-checkbox class="md-warn" ng-checked="vm.isSelected(item)" ng-click="vm.selectObject(item)" aria-label="Search History check box">
+            {{item.clazz}}:{{item.elementName}}/{{item.variant}};{{item.revision}}
+          </md-checkbox>
+            </div>-->
+
+            <!--<md-list flex>
+              <h2>History</h2>
+              <md-list-item class="md-1-line" ng-repeat="item in vm.searchList track by $index" ng-click="null">
+                <div class="md-list-item-text" layout="column">
+                  <h4>{{item.clazz}}:{{item.elementName}}/{{item.variant}};{{item.revision}}</h4>
+                </div>
+              </md-list-item>
+
+            </md-list>-->
+
+             <h2>History</h2>
+            <div ng-repeat="item in vm.searchList track by $index">
+              <md-button class="history-item" ng-click="vm.selectObject(item)">{{item.clazz}}:{{item.elementName}}/{{item.variant}};{{item.revision}}</md-button>
+            </div>
+
+          </div>
+
+          <div flex="50">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Class</label>
+              <input ng-model="vm.searchObject.clazz">
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Name</label>
+              <input ng-model="vm.searchObject.elementName">
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Variant</label>
+              <input ng-model="vm.searchObject.variant">
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Revision</label>
+              <input ng-model="vm.searchObject.revision">
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm>
+
+              <div ng-if="vm.searchError">
+                <b style="color:red;">
+                  {{vm.searchError}}
+                </b>
+              </div>
+            </md-input-container>
+          </div>
+        </div>
+      </md-content>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+       <md-button class="md-warn md-raised" ng-click="vm.clear()" style="margin-right:20px;">
+        Clear
+      </md-button>
+      <md-button class="md-warn md-raised" ng-click="vm.search()" ng-disabled="vm.isSearching" style="margin-right:20px;">
+        Search
+      </md-button>
+
+    </md-dialog-actions>
+  </form>
+</md-dialog>
